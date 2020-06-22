@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
 
 toc_footers:
-  - <a href='https://serpsbot.com/account/sign-up/'>Get Your API Key</a>
+  - <a href='https://serpsbot.com/account/sign-up/' target='_blank'>Get Your API Key</a>
 
 includes:
   - errors
@@ -18,55 +18,6 @@ search: false
 # Introduction
 
 [SERPSBOT](https://serpsbot.com) offers a robust API to get Google SERPs results as JSON data. We offer a highly-reliable API service at an affordable price. This documentation helps you get started using our API service.
-
-# Get Account Details
-> Get account details:
-
-```python
-import requests
-headers = {
-    "Authorization": "Bearer your-api-key-here"
-}
-res = requests.get("https://serpsbot.com/api/v1/account/", headers=headers)
-
-# JSON data
-res.json()
-```
-
-```shell
-curl -H "Authorization: Bearer your-api-key-here" "https://serpsbot.com/api/v1/account/"
-```
-
-```php
-require Guzzle\Client;
-$options = [
-    "headers" => [
-        "Authorization" => "Bearer your-api-key-here"
-    ]
-];
-$client = new Client();
-$res = $client->get("https://serpsbot.com/api/v1/account/", $options);
-
-# JSON data
-$json = json_decode($res->getBody()->getContents(), true);
-```
-
-> Example Response:
-
-```json
-{
-    "account": {
-        "email": "user@example.com",
-        "credits": 123456789,
-        "stats": 123456789
-    }
-}
-```
-
-### Request Headers
-Header | Value |
-------- | ------- |
-Authorization | Bearer your-api-key-here
 
 # Get SERP Results
 
@@ -278,3 +229,55 @@ hl | string | no | Language to get search results for. Defaults to <strong>en-US
 gl | string | no | Country code to get search results for a particular country. Defaults to <strong>us</strong>.
 autocorrect | integer | no | Should Google autocorrect your typos? If no, set this to <strong>0</strong>. Defaults to <strong>1</strong>.
 duration | string | no | Duration to get results updated during the specified time period. Expected values are <strong>d</strong> (for the last 24 hours), <strong>w</strong> (for the last 7 days), <strong>m</strong> (for the last 1 month), <strong>mn</strong> (for the last <strong>n</strong> months), and <strong>y</strong> (for the last 1 year).
+
+# Get Account Details
+
+You can perform a <code>GET</code> request at our API endpoint <code>https://serpsbot.com/api/v1/account/</code> to get details for your account. The server will return your email address, remaining credits, and a count of your API calls as a JSON response.
+
+### Request Headers
+Header | Value |
+------- | ------- |
+Authorization | Bearer your-api-key-here
+
+> Get account details:
+
+```python
+import requests
+headers = {
+    "Authorization": "Bearer your-api-key-here"
+}
+res = requests.get("https://serpsbot.com/api/v1/account/", headers=headers)
+
+# JSON data
+res.json()
+```
+
+```shell
+curl -H "Authorization: Bearer your-api-key-here" "https://serpsbot.com/api/v1/account/"
+```
+
+```php
+require Guzzle\Client;
+$options = [
+    "headers" => [
+        "Authorization" => "Bearer your-api-key-here"
+    ]
+];
+$client = new Client();
+$res = $client->get("https://serpsbot.com/api/v1/account/", $options);
+
+# JSON data
+$json = json_decode($res->getBody()->getContents(), true);
+```
+
+> Example Response:
+
+```json
+{
+    "account": {
+        "email": "user@example.com",
+        "credits": 123456789,
+        "stats": 123456789
+    }
+}
+```
