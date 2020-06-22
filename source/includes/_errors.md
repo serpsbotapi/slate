@@ -11,5 +11,5 @@ Code | Details
 405 | The request method you are trying isn't supported on this endpoint.
 422 | A validation error occured for some of your query params or form data.
 429 | A rare error that tells you that you are making API calls too quickly.
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Our fault! Something unexpected happened at our hardware end.
+500 | Our fault! Something unexpected happened at our hardware end.
+503 | Our services are unavailable (maybe due to an ongoing maintenance).
