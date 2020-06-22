@@ -257,7 +257,7 @@ curl -H "Authorization: Bearer your-api-key-here" "https://serpsbot.com/api/v1/a
 ```
 
 ```php
-require Guzzle\Client;
+use Guzzle\Client;
 $options = [
     "headers" => [
         "Authorization" => "Bearer your-api-key-here"
