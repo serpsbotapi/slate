@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>SERPSBOT API Docs</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen-0a7c4629.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-c5541673.js"></script>
+      <script src="javascripts/all_nosearch-c275c2f6.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -209,285 +209,384 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-b7841093.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="php">php</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#get-serp-results" class="toc-h1 toc-link" data-title="Get SERP Results">Get SERP Results</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#request-headers" class="toc-h2 toc-link" data-title="Request Headers">Request Headers</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#request-parameters" class="toc-h2 toc-link" data-title="Request Parameters">Request Parameters</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#get-account-details" class="toc-h1 toc-link" data-title="Get Account Details">Get Account Details</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-headers-2" class="toc-h2 toc-link" data-title="Request Headers">Request Headers</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#possible-errors" class="toc-h1 toc-link" data-title="Possible Errors">Possible Errors</a>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://serpsbot.com/account/sign-up/' target='_blank'>Get Your API Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p><a href="https://serpsbot.com">SERPSBOT</a> offers a robust API to get Google SERPs results as JSON data. We offer a highly-reliable API service at an affordable price. This documentation helps you get started using our API service.</p>
+<h1 id='get-serp-results'>Get SERP Results</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Get SERP results:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="c1"># Your API key
+</span><span class="n">apikey</span> <span class="o">=</span> <span class="s">'your-api-key-here'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">apikey</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'q'</span><span class="p">:</span> <span class="s">'covid19'</span><span class="p">,</span>
+  <span class="s">'pages'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s">'hl'</span><span class="p">:</span> <span class="s">'en-US'</span><span class="p">,</span>
+  <span class="s">'gl'</span><span class="p">:</span> <span class="s">'us'</span>
+<span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://serpsbot.com/api/v1/google-serps/'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="c1"># JSON data
+</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># In a terminal, you can use CURL to get SERP results</span>
+curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/google-serps/?q=covid19&amp;pages=2&amp;hl=en-US&amp;gl=us"</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="nx">Guzzle\Client</span><span class="p">;</span>
+<span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer your-api-key-here'</span>
+  <span class="p">],</span>
+  <span class="s1">'params'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'q'</span> <span class="o">=&gt;</span> <span class="s1">'covid19'</span><span class="p">,</span>
+    <span class="s1">'pages'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'hl'</span> <span class="o">=&gt;</span> <span class="s1">'en-US'</span><span class="p">,</span>
+    <span class="s1">'gl'</span> <span class="o">=&gt;</span> <span class="s1">'us'</span>
+  <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">();</span>
+<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://serpsbot.com/api/v1/google-serps/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+
+<span class="c1">// JSON data</span>
+<span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"covid19"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"hl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"time_taken"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7270863056182861</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"credits_left"</span><span class="p">:</span><span class="w"> </span><span class="mi">707705</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"organic"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://covid19.ca.gov/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"California Coronavirus - CA.gov"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Official website for California Coronavirus (COVID-19) Response daily updates and resources. Stay home - save lives. Find information and services to help you ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> Official website for California Coronavirus (</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> ) Response daily updates and resources. Stay home - save lives. Find information and services to help you</span><span class="se">\n</span><span class="s2"> &lt;wbr/&gt;</span><span class="se">\n</span><span class="s2"> ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.cdc.gov/coronavirus/2019-ncov/index.html"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Disease 2019 (COVID-19) | CDC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus (COVID-19) Home Page."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> Coronavirus (</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> ) Home Page.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://covid19.healthdata.org/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COVID-19"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"135,109COVID-19 deaths. projected by August 4, 2020. 0 20k 40k 60k 80k 100k 120k 140k 160k 180k 200k 220k 240k 260k 280k 300k Total deaths Mar 1 Apr ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> 135,109</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> deaths. projected by August 4, 2020. 0 20k 40k 60k 80k 100k 120k 140k 160k 180k 200k 220k 240k 260k 280k 300k Total deaths Mar 1 Apr ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.who.int/emergencies/diseases/novel-coronavirus-2019"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus disease 2019 - World Health Organization"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Information on COVID-19, the infectious disease caused by the most recently discovered coronavirus."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> Information on</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> , the infectious disease caused by the most recently discovered coronavirus.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Disease (COVID-19) Situation Reports"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The daily Situation Report provides the current COVID-19 epidemiological situation and presents official case and death counts and transmission classifications ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> The daily Situation Report provides the current</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> epidemiological situation and presents official case and death counts and transmission classifications ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.theatlantic.com/science/archive/2020/06/how-negative-covid-19-test-can-mislead/613246/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What a Negative COVID-19 Test Really Means - The Atlantic"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 day ago - Understanding false negatives from COVID-19 tests is especially important because people who do not yet know that they're sick play a major ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  1 day ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> Understanding false negatives from</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> tests is especially important because people who do not yet know that they're sick play a major ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.nih.gov/coronavirus"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus (COVID-19) | National Institutes of Health (NIH)"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resources and news releases from the National Institutes of Health regarding the coronavirus (COVID-19)."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> Resources and news releases from the National Institutes of Health regarding the coronavirus (</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> ).</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.alabamapublichealth.gov/covid19/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Disease 2019 (COVID-19) | Alabama Department ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 days ago - COVID-19, the infectious disease caused by SARS-CoV-2, is now a pandemic affecting many countries globally. Patients with confirmed COVID- ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  3 days ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> , the infectious disease caused by SARS-CoV-2, is now a pandemic affecting many countries globally. Patients with confirmed</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.scdhec.gov/infectious-diseases/viruses/coronavirus-disease-2019-covid-19"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Disease 2019 (COVID-19) | SCDHEC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHEC continues to work with federal, state and local partners as it investigates COVID-19 cases in South ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> DHEC continues to work with federal, state and local partners as it investigates</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> cases in South ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.sciencemag.org/news/2020/05/why-do-some-covid-19-patients-infect-many-others-whereas-most-don-t-spread-virus-all"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Why do some COVID-19 patients infect many others, whereas ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May 19, 2020 - Science 's COVID-19 reporting is supported by the Pulitzer Center. When 61 people met for a choir practice in a church in Mount Vernon, ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  May 19, 2020 -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> Science 's</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> reporting is supported by the Pulitzer Center. When 61 people met for a choir practice in a church in Mount Vernon, ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mn.gov/covid19/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Minnesota COVID-19 Response (Coronavirus) / COVID-19 ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The state of Minnesota's official website for COVID-19 information. Get information on coronavirus testing sites, Minnesota-specific case data and statistics, ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> The state of Minnesota's official website for</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> information. Get information on coronavirus testing sites, Minnesota-specific case data and statistics, ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.worldometers.info/coronavirus/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Update (Live): 9,077,451 Cases and 471,246 ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The coronavirus COVID-19 is affecting 213 countries and territories around the world and 2 international conveyances. The day is reset after midnight GMT+0."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> The coronavirus</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> is affecting 213 countries and territories around the world and 2 international conveyances. The day is reset after midnight GMT+0.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.apple.com/covid19/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus (COVID-19) - Apple and CDC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"If you think you or a family member have been exposed to COVID-19, evaluate symptoms with our in-home screening tool and understand your next steps."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> If you think you or a family member have been exposed to</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> , evaluate symptoms with our in-home screening tool and understand your next steps.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.politico.com/states/florida/story/2020/06/20/desantis-pivots-on-covid-19-surge-says-testing-doesnt-account-for-spike-1293901"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeSantis pivots on Covid-19 surge, says testing doesn't ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 days ago - TALLAHASSEE — Gov. Ron DeSantis acknowledged on Saturday that the rising number of new Covid-19 cases in Florida cannot be ..."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  2 days ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> TALLAHASSEE — Gov. Ron DeSantis acknowledged on Saturday that the rising number of new</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  Covid-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> cases in Florida cannot be ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.theatlantic.com/health/archive/2020/06/does-colloidal-silver-work-covid-19/613177/"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does Colloidal Silver Work for COVID-19? - The Atlantic"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 hours ago - The pandemic has sparked an interest in dubious cures such as colloidal silver—and some are trying to capitalize on it."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  4 hours ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> The pandemic has sparked an interest in dubious cures such as colloidal silver—</span><span class="se">\n</span><span class="s2"> &lt;wbr/&gt;</span><span class="se">\n</span><span class="s2"> and some are trying to capitalize on it.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://landing.google.com/screener/covid19"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COVID‑19 self-assessment - Google"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This resource can help you decide what kind of medical care you might need for COVID‑19. For informational purposes only. Not a medical diagnosis."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> This resource can help you decide what kind of medical care you might need for COVID‑19. For informational purposes only. Not a medical diagnosis.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mprnews.org/story/2020/06/22/latest-on-covid19-in-mn"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latest on COVID-19 in MN: State passes 500K tests | MPR News"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 hours ago - The total number of completed COVID-19 tests in Minnesota surpassed 500000 over the weekend as the virus' toll continued."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  5 hours ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> The total number of completed</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> tests in Minnesota surpassed 500000 over the weekend as the virus' toll continued.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>To get SERP results, you need to first get your API key <a href="https://serpsbot.com/account/sign-up/">from here</a> and then perform a <code>GET</code> request to our API endpoint <code>https://serpsbot.com/api/v1/google-serps/</code></p>
+<h3 id='request-headers'>Request Headers</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer your-api-key-here</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>q</td>
+<td>string</td>
+<td>yes</td>
+<td>Search query parameter. All Google search filters like <strong>site:</strong> and others are supported.</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>integer</td>
+<td>no</td>
+<td>Number of SERP pages to get based on 10 results per page. Defalts to <strong>1</strong> (i.e. first page).</td>
+</tr>
+<tr>
+<td>hl</td>
+<td>string</td>
+<td>no</td>
+<td>Language to get search results for. Defaults to <strong>en-US</strong> (i.e. English USA).</td>
+</tr>
+<tr>
+<td>gl</td>
+<td>string</td>
+<td>no</td>
+<td>Country code to get search results for a particular country. Defaults to <strong>us</strong>.</td>
+</tr>
+<tr>
+<td>autocorrect</td>
+<td>integer</td>
+<td>no</td>
+<td>Should Google autocorrect your typos? If no, set this to <strong>0</strong>. Defaults to <strong>1</strong>.</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>string</td>
+<td>no</td>
+<td>Duration to get results updated during the specified time period. Expected values are <strong>d</strong> (for the last 24 hours), <strong>w</strong> (for the last 7 days), <strong>m</strong> (for the last 1 month), <strong>mn</strong> (for the last <strong>n</strong> months), and <strong>y</strong> (for the last 1 year).</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='get-account-details'>Get Account Details</h1>
+<p>You can perform a <code>GET</code> request at our API endpoint <code>https://serpsbot.com/api/v1/account/</code> to get details for your account. The server will return your email address, remaining credits, and a count of your API calls as a JSON response.</p>
+<h3 id='request-headers-2'>Request Headers</h3>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer your-api-key-here</td>
+</tr>
+</tbody></table>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<blockquote>
+<p>Get account details:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your-api-key-here"</span>
+<span class="p">}</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-X</span> DELETE
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1"># JSON data
+</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/account/"</span>
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="k">require</span> <span class="nx">Guzzle\Client</span><span class="p">;</span>
+<span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"headers"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s2">"Authorization"</span> <span class="o">=&gt;</span> <span class="s2">"Bearer your-api-key-here"</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">();</span>
+<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="c1"># JSON data</span>
+<span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"credits"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stats"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+</span></code></pre></div><h1 id='possible-errors'>Possible Errors</h1>
+<p>Sometimes, your API calls may encounter any of the following errors. In a perfect scenario, your code should expect and handle these errors.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Code</th>
+<th>Details</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad request. Our server didn&#39;t understand your request.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>402</td>
+<td>Your credits are exhausted. You need to buy credits.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Your provided API key seems to be invalid.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>The API endpoint you tried doesn&#39;t exist.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>The request method you are trying isn&#39;t supported on this endpoint.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>422</td>
+<td>A validation error occured for some of your query params or form data.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>A rare error that tells you that you are making API calls too quickly.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Our fault! Something unexpected happened at our hardware end.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Our services are unavailable (maybe due to an ongoing maintenance).</td>
 </tr>
 </tbody></table>
 
@@ -495,9 +594,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="php">php</a>
           </div>
       </div>
     </div>
