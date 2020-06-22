@@ -10,13 +10,9 @@ The Kittn API uses the following error codes:
 Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+403 | Your API key seems to be invalid.
+405 | The request method you are trying isn't supported on this endpoint.
+422 | A validation error occured for some of your query params or form data.
+429 | A rare error that tells you that you are making API calls too quickly.
+500 | Our fault! Something unexpected happened at our hardware end.
+503 | Our services are unavailable (maybe due to an ongoing maintenance).
