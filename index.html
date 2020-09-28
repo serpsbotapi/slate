@@ -265,7 +265,7 @@
 
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'q'</span><span class="p">:</span> <span class="s">'covid19'</span><span class="p">,</span>
-  <span class="s">'pages'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s">'page'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="s">'hl'</span><span class="p">:</span> <span class="s">'en-US'</span><span class="p">,</span>
   <span class="s">'gl'</span><span class="p">:</span> <span class="s">'us'</span>
 <span class="p">}</span>
@@ -275,7 +275,7 @@
 <span class="c1"># JSON data
 </span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># In a terminal, you can use CURL to get SERP results</span>
-curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/google-serps/?q=covid19&amp;pages=2&amp;hl=en-US&amp;gl=us"</span>
+curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/google-serps/?q=covid19&amp;page=2&amp;hl=en-US&amp;gl=us"</span>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="kn">use</span> <span class="nn">Guzzle\Client</span><span class="p">;</span>
 <span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
   <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -283,7 +283,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
   <span class="p">],</span>
   <span class="s1">'params'</span> <span class="o">=&gt;</span> <span class="p">[</span>
     <span class="s1">'q'</span> <span class="o">=&gt;</span> <span class="s1">'covid19'</span><span class="p">,</span>
-    <span class="s1">'pages'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'page'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s1">'hl'</span> <span class="o">=&gt;</span> <span class="s1">'en-US'</span><span class="p">,</span>
     <span class="s1">'gl'</span> <span class="o">=&gt;</span> <span class="s1">'us'</span>
   <span class="p">]</span>
@@ -300,7 +300,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
             </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"covid19"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"gl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us"</span><span class="p">,</span><span class="w">
@@ -380,55 +380,6 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
                     </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May 19, 2020 - Science 's COVID-19 reporting is supported by the Pulitzer Center. When 61 people met for a choir practice in a church in Mount Vernon, ..."</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  May 19, 2020 -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> Science 's</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> reporting is supported by the Pulitzer Center. When 61 people met for a choir practice in a church in Mount Vernon, ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mn.gov/covid19/"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Minnesota COVID-19 Response (Coronavirus) / COVID-19 ..."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The state of Minnesota's official website for COVID-19 information. Get information on coronavirus testing sites, Minnesota-specific case data and statistics, ..."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> The state of Minnesota's official website for</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> information. Get information on coronavirus testing sites, Minnesota-specific case data and statistics, ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.worldometers.info/coronavirus/"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus Update (Live): 9,077,451 Cases and 471,246 ..."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The coronavirus COVID-19 is affecting 213 countries and territories around the world and 2 international conveyances. The day is reset after midnight GMT+0."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> The coronavirus</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> is affecting 213 countries and territories around the world and 2 international conveyances. The day is reset after midnight GMT+0.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.apple.com/covid19/"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coronavirus (COVID-19) - Apple and CDC"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"If you think you or a family member have been exposed to COVID-19, evaluate symptoms with our in-home screening tool and understand your next steps."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> If you think you or a family member have been exposed to</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> , evaluate symptoms with our in-home screening tool and understand your next steps.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.politico.com/states/florida/story/2020/06/20/desantis-pivots-on-covid-19-surge-says-testing-doesnt-account-for-spike-1293901"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DeSantis pivots on Covid-19 surge, says testing doesn't ..."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 days ago - TALLAHASSEE — Gov. Ron DeSantis acknowledged on Saturday that the rising number of new Covid-19 cases in Florida cannot be ..."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  2 days ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> TALLAHASSEE — Gov. Ron DeSantis acknowledged on Saturday that the rising number of new</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  Covid-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> cases in Florida cannot be ...</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.theatlantic.com/health/archive/2020/06/does-colloidal-silver-work-covid-19/613177/"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does Colloidal Silver Work for COVID-19? - The Atlantic"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 hours ago - The pandemic has sparked an interest in dubious cures such as colloidal silver—and some are trying to capitalize on it."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  4 hours ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> The pandemic has sparked an interest in dubious cures such as colloidal silver—</span><span class="se">\n</span><span class="s2"> &lt;wbr/&gt;</span><span class="se">\n</span><span class="s2"> and some are trying to capitalize on it.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://landing.google.com/screener/covid19"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COVID‑19 self-assessment - Google"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This resource can help you decide what kind of medical care you might need for COVID‑19. For informational purposes only. Not a medical diagnosis."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> This resource can help you decide what kind of medical care you might need for COVID‑19. For informational purposes only. Not a medical diagnosis.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mprnews.org/story/2020/06/22/latest-on-covid19-in-mn"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latest on COVID-19 in MN: State passes 500K tests | MPR News"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 hours ago - The total number of completed COVID-19 tests in Minnesota surpassed 500000 over the weekend as the virus' toll continued."</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"snippet_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">st</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> &lt;span class=</span><span class="se">\"</span><span class="s2">f</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2">  5 hours ago -</span><span class="se">\n</span><span class="s2"> &lt;/span&gt;</span><span class="se">\n</span><span class="s2"> The total number of completed</span><span class="se">\n</span><span class="s2"> &lt;em&gt;</span><span class="se">\n</span><span class="s2">  COVID-19</span><span class="se">\n</span><span class="s2"> &lt;/em&gt;</span><span class="se">\n</span><span class="s2"> tests in Minnesota surpassed 500000 over the weekend as the virus' toll continued.</span><span class="se">\n</span><span class="s2">&lt;/span&gt;"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -464,10 +415,10 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
 <td>Search query parameter. All Google search filters like <strong>site:</strong> and others are supported.</td>
 </tr>
 <tr>
-<td>pages</td>
+<td>page</td>
 <td>integer</td>
 <td>no</td>
-<td>Number of SERP pages to get based on 10 results per page. Defalts to <strong>1</strong> (i.e. first page).</td>
+<td>Number of SERP page to get based on 10 results per page. Defaults to <strong>1</strong> (i.e. first page).</td>
 </tr>
 <tr>
 <td>hl</td>
