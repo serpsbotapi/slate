@@ -270,12 +270,12 @@
   <span class="s">'gl'</span><span class="p">:</span> <span class="s">'us'</span>
 <span class="p">}</span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://serpsbot.com/api/v1/google-serps/'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.serpsbot.com/api/v1/google-serps/'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="c1"># JSON data
 </span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># In a terminal, you can use CURL to get SERP results</span>
-curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/google-serps/?q=covid19&amp;pages=2&amp;hl=en-US&amp;gl=us"</span>
+curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://api.serpsbot.com/api/v1/google-serps/?q=covid19&amp;pages=2&amp;hl=en-US&amp;gl=us"</span>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="kn">use</span> <span class="nn">Guzzle\Client</span><span class="p">;</span>
 <span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
   <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -289,7 +289,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
   <span class="p">]</span>
 <span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">();</span>
-<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://serpsbot.com/api/v1/google-serps/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://api.serpsbot.com/api/v1/google-serps/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 
 <span class="c1">// JSON data</span>
 <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
@@ -435,7 +435,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>To get SERP results, you need to first get your API key <a href="https://serpsbot.com/account/sign-up/">from here</a> and then perform a <code>GET</code> request to our API endpoint <code>https://serpsbot.com/api/v1/google-serps/</code></p>
+<p>To get SERP results, you need to first get your API key <a href="https://serpsbot.com/account/sign-up/">from here</a> and then perform a <code>GET</code> request to our API endpoint <code>https://api.serpsbot.com/api/v1/google-serps/</code></p>
 <h3 id='request-headers'>Request Headers</h3>
 <table><thead>
 <tr>
@@ -463,6 +463,12 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
 <td>yes</td>
 <td>Search query parameter. All Google search filters like <strong>site:</strong> and others are supported.</td>
 </tr>
+<tr>
+  <td>ua</td>
+  <td>string</td>
+  <td>no</td>
+  <td>User agent to get SERP results for. Expected value is either <strong>desktop</strong> or <strong>mobile</strong>.</td>
+  </tr>
 <tr>
 <td>pages</td>
 <td>integer</td>
@@ -495,7 +501,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
 </tr>
 </tbody></table>
 <h1 id='get-account-details'>Get Account Details</h1>
-<p>You can perform a <code>GET</code> request at our API endpoint <code>https://serpsbot.com/api/v1/account/</code> to get details for your account. The server will return your email address, remaining credits, and a count of your API calls as a JSON response.</p>
+<p>You can perform a <code>GET</code> request at our API endpoint <code>https://api.serpsbot.com/api/v1/account/</code> to get details for your account. The server will return your email address, remaining credits, and a count of your API calls as a JSON response.</p>
 <h3 id='request-headers-2'>Request Headers</h3>
 <table><thead>
 <tr>
@@ -516,11 +522,11 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer your-api-key-here"</span>
 <span class="p">}</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://api.serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="c1"># JSON data
 </span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://serpsbot.com/api/v1/account/"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer your-api-key-here"</span> <span class="s2">"https://api.serpsbot.com/api/v1/account/"</span>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="kn">use</span> <span class="nn">Guzzle\Client</span><span class="p">;</span>
 <span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"headers"</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -528,7 +534,7 @@ curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s2">
     <span class="p">]</span>
 <span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">();</span>
-<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"https://api.serpsbot.com/api/v1/account/"</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 
 <span class="c1"># JSON data</span>
 <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getContents</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
